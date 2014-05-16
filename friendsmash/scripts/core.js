@@ -38,7 +38,15 @@ var celebs = [{
 }];
 
 $( document ).ready(function() {
+	FB.init({
+	  appId: 1423528977912411,
+	  frictionlessRequests: true,
+	  status: true,
+	  version: 'v2.0'
+	});
 
+	FB.Event.subscribe('auth.authResponseChange', onAuthResponseChange);
+	FB.Event.subscribe('auth.statusChange', onStatusChange);
   showHome();
 
   $( document ).on( 'click', 'button.play', function() {

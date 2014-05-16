@@ -9,12 +9,14 @@
 
     <link href="style/reset.css" rel="stylesheet" type="text/css">
     <link href="style/style.css" rel="stylesheet" type="text/css">
-
+    
+    <script src="//connect.facebook.net/en_US/sdk.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <script src="scripts/core.js"></script>
     <script src="scripts/ui.js"></script>
     <script src="scripts/game.js"></script>
+	<script src="scripts/social.js"></script>
 
     <!--[if IE]><script src="scripts/excanvas.js"></script><![endif]-->
   </head>
