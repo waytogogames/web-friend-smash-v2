@@ -59,5 +59,10 @@ $( document ).ready(function() {
   
   $( document ).on( 'click', '#menu button.challenge', onChallenge );
   
+  $( document ).on( 'click', '.friendselector .item', onChallengeItemClick );
+  $( document ).on( 'click', '#friendselector button.challenge.send', onChallengeSend );
+  $( document ).on( 'click', '#friendselector button.invitable_friends', onChallengeShowInvitableFriends );
+  $( document ).on( 'click', '#friendselector button.friends', onChallengeShowFriends );
+  
 });
 

@@ -70,6 +70,55 @@
         <button class="image close"></button>
       </div>
     </section>
+	
+	<section id="home" class="hidden">
+      <div class="panel left">
+        <div id="welcome">
+          <h1>Welcome <span class="first_name">...</span></h1>
+          <img class="profile" src="images/profile.png" />
+          <ul class="stats">
+            <li>High Score <span class="me score">...</span></li>
+            <li>Coins <span class="me coins">...</span></li>
+            <li>Bombs <span class="me bombs">...</span></li>
+          </ul>
+        </div>
+        <div id="menu">
+          <button class="image play"></button>
+          <button class="image challenge"></button>
+          <button class="image leaderboard"></button>
+        </div>
+      </div>
+        <div class="panel right hidden friends" id="friendselector">
+          <div class="nofriends">
+            <p>Friend Smash! is better with friends! Click here to see a list of friends to challenge.</p>
+            <button class"friendPermissions">Grant user_friends</button>
+          </div>
+          <div class="friends">
+            <h1>Challenge friends</h1>
+            <div class="tabs">
+              <button class="friends">Request</button>
+              <button class="invitable_friends">Invite</button>
+            </div>
+            <ul class="scrollable_list friendselector friends">
+              <li class="loading">Loading...</li>
+              <li class="template">
+                <img src="." class="profile small" />
+                <span class="name">...</span>
+              </li>
+            </ul>
+            <ul class="scrollable_list friendselector invitable_friends">
+              <li class="loading">Loading...</li>
+              <li class="template">
+                <img src="." class="profile small" />
+                <span class="name">...</span>
+              </li>
+            </ul>
+            <div class="buttons">
+              <button class="image challenge send" disabled="disabled"></button>
+            </div>
+          </div>
+        </div>
+    </section>
 
     <footer style="display: none;">
       <div class="container">

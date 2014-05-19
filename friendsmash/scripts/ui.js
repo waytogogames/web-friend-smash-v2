@@ -133,8 +133,71 @@ function onGameOverClose() {
 }
 
 function onChallenge() {
-  sendChallenge(null,'Friend Smash is great fun! Come and check it out!', function(response) {
-    console.log('sendChallenge',response);
-  });
+  if( !hasPermission('user_friends') ) {
+    sendChallenge();
+  } else {
+    getFriends(function(){
+      getInvitableFriends(function(){
+        renderFriends();
+        renderInvitableFriends();
+        $('#home').find('.panel.right').addClass('hidden');
+        $('#friendselector').removeClass('hidden');
+      });
+    });
+  }
 }
 
+function renderInvitableFriends() {
+  var list = $('#friendselector .scrollable_list.invitable_friends');
+  list.children().remove('.item');
+  var template = list.find('.template');
+  for( var i = 0; i < friendCache.invitable_friends.length; i++ ) {
+    var item = template.clone().removeClass('template').addClass('item');
+    item.attr('data-id',friendCache.invitable_friends[i].id);
+    item.find('.name').html(friendCache.invitable_friends[i].name);
+    item.find('.profile').attr('src',friendCache.invitable_friends[i].picture.data.url);
+    list.append(item);
+  }
+}
+
+function renderFriends() {
+  var list = $('#friendselector .scrollable_list.friends');
+  list.children().remove('.item');
+  var template = list.find('.template');
+  for( var i = 0; i < friendCache.friends.length; i++ ) {
+    var item = template.clone().removeClass('template').addClass('item');
+    item.attr('data-id',friendCache.friends[i].id);
+    item.find('.name').html(friendCache.friends[i].name);
+    item.find('.profile').attr('src',friendCache.friends[i].picture.data.url);
+    list.append(item);
+  }
+}
+
+function onChallengeShowFriends() {
+  $('#friendselector').removeClass('invitable_friends').addClass('friends');
+}
+
+function onChallengeShowInvitableFriends() {
+  $('#friendselector').removeClass('friends').addClass('invitable_friends');
+}
+
+function onChallengeItemClick() {
+  $(this).toggleClass('selected');
+  if( $('#friendselector .scrollable_list.friendselector li.item.selected').length > 0 ) {
+    $('#friendselector button.send').removeAttr('disabled');
+  } else {
+    $('#friendselector button.send').attr('disabled', 'disabled');
+  }
+}
+
+function onChallengeSend() {
+  var to = '';
+  $('#friendselector .scrollable_list.friendselector li.item.selected').each(function(){
+    if( to != '' ) to += ',';
+    to += $(this).attr('data-id');
+  });
+  sendChallenge(to,'Friend Smash is great fun! Come and check it out!', function(){
+    $('#friendselector .scrollable_list.friendselector li.item').removeClass('selected');
+    $('#friendselector button.send').attr('disabled', 'disabled');
+  })
+}
