@@ -1,15 +1,16 @@
-var friendCache = {};
+var friendCache = {
+  me: {},
+  reRequests: {}
+};
 
-
-
-
-function login(callback) {
-  FB.login(callback);
+function reRequest(scope, callback) {
+  FB.login(callback, { scope: scope, auth_type:'rerequest'});
 }
+
 function loginCallback(response) {
   console.log('loginCallback',response);
   if(response.status != 'connected') {
-    top.location.href = 'https://www.facebook.com/appcenter/friendsmashsample';
+    top.location.href = 'https://www.facebook.com/appcenter/test-smash';
   }
 }
 function onStatusChange(response) {
@@ -17,8 +18,18 @@ function onStatusChange(response) {
     login(loginCallback);
   } else {
     getMe(function(){
-      renderWelcome();
-      showHome();
+      getPermissions(function(){
+        if(hasPermission('user_friends')) {
+          getFriends(function(){
+            renderWelcome();
+            onLeaderboard();
+            showHome();    
+          });
+        } else {
+          renderWelcome();
+          showHome();
+        }
+      });
     });
   }
 }
@@ -35,4 +46,35 @@ function getMe(callback) {
       console.error('/me', response);
     }
   });
+}
+function getFriends(callback) {
+  FB.api('/me/friends', {fields: 'id,name,first_name,picture.width(120).height(120)'}, function(response){
+    if( !response.error ) {
+      friendCache.friends = response;
+      callback();
+    } else {
+      console.error('/me/friends', response);
+    }
+  });
+}
+
+function getPermissions(callback) {
+  FB.api('/me/permissions', function(response){
+    if( !response.error ) {
+      friendCache.permissions = response;
+      callback();
+    } else {
+      console.error('/me/permissions', response);
+    }
+  });
+}
+
+function hasPermission(permission) {
+  for( var i in friendCache.permissions ) {
+    if( 
+      friendCache.permissions[i].permission == permission 
+      && friendCache.permissions[i].status == 'granted' ) 
+      return true;
+  }
+  return false;
 }
