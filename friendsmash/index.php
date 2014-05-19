@@ -36,9 +36,10 @@
           <h1>Welcome <span class="first_name">Player</span></h1>
           <img class="profile" src="images/profile.png" />
         </div>
-        <div id="menu">
-          <button class="image play"></button>
-        </div>
+		<div id="menu">
+		  <button class="image play"></button>
+		  <button class="image challenge"></button>
+		</div>
       </div>
     </section>
 

@@ -131,3 +131,10 @@ function updateGameStats(gameState) {
 function onGameOverClose() {
   showHome();
 }
+
+function onChallenge() {
+  sendChallenge(null,'Friend Smash is great fun! Come and check it out!', function(response) {
+    console.log('sendChallenge',response);
+  });
+}
+

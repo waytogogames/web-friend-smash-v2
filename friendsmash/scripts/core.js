@@ -56,4 +56,8 @@ $( document ).ready(function() {
   $( document ).on( 'click', '#gameover button.close', onGameOverClose );
 
   $( document ).on( 'mousedown', '#canvas', onGameCanvasMousedown );
+  
+  $( document ).on( 'click', '#menu button.challenge', onChallenge );
+  
 });
+
