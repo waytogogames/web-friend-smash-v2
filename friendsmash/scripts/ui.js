@@ -134,7 +134,8 @@ function onGameOverClose() {
 
 function onChallenge() {
   if( !hasPermission('user_friends') ) {
-    sendChallenge();
+    sendChallenge(null,'Friend Smash is great fun! Come and check it out!', function(response) {
+    console.log('sendChallenge',response);
   } else {
     getFriends(function(){
       getInvitableFriends(function(){
