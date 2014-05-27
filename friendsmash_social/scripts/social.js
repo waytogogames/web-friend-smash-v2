@@ -1,5 +1,5 @@
-var appId = '480369938658210';
-var appNamespace = 'friendsmashsample';
+var appId = '1423528977912411';
+var appNamespace = 'test-smash';
 var appCenterURL = '//www.facebook.com/appcenter/' + appNamespace;
 
 var friendCache = {
@@ -20,7 +20,7 @@ function getFriendCacheData(endpoint, callback, options) {
     if(endpoint == 'me') {
       url += endpoint;
     } else if(endpoint == 'scores') {
-      url += appId + '/' + endpoint;
+      url += '1423528977912411' + '/' + endpoint;
     } else {
       url += 'me/' + endpoint;
     }

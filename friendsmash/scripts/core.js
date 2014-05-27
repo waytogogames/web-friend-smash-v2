@@ -1,4 +1,4 @@
-var g_useFacebook = false;
+var g_useFacebook = true;
 
 var defaults = {
   coins: 100,

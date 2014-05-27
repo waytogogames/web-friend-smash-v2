@@ -57,7 +57,7 @@
           <ul class="scrollable_list leaderboard">
             <li class="loading">Loading...</li>
             <li class="template">
-              <img src="images/profile.png" class="profile small" />
+              <img src="." class="profile small" />
               <div class="namecontainer">
                 <span class="rank">1</span>. <span class="name">Ali</span>
               </div>
